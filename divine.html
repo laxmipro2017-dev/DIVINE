@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine Health Diagnostic | Advanced Pathology & Clinical Lab</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        },
+                        medical: {
+                            blue: '#1e3a8a',
+                            cyan: '#0284c7',
+                            slate: '#0f172a',
+                            light: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5"><i data-lucide="award" class="w-3.5 h-3.5 text-teal-400"></i> NABL & ISO 9001:2015 Accredited</span>
+                <span class="hidden md:inline-flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-teal-400"></i> 24/7 Lab Services & Emergency Testing</span>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="tel:+1800123456" class="hover:text-teal-400 transition flex items-center gap-1"><i data-lucide="phone" class="w-3.5 h-3.5"></i> Helpline: 1800-123-456</a>
+                <a href="https://wa.me/1234567890" target="_blank" class="hover:text-emerald-400 transition flex items-center gap-1"><i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-400"></i> WhatsApp Support</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 bg-gradient-to-tr from-brand-700 to-teal-400 rounded-xl flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition">
+                        <i data-lucide="activity" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-slate-900 block leading-none">DIVINE HEALTH</span>
+                        <span class="text-xs font-semibold text-brand-600 tracking-wider uppercase block mt-1">Diagnostic & Research Lab</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-slate-600">
+                    <a href="#home" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">Home</a>
+                    <a href="#packages" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">Health Packages</a>
+                    <a href="#tests" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">Test Directory</a>
+                    <a href="#portal" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">Patient Portal</a>
+                    <a href="#calculator" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">Health Calculator</a>
+                    <a href="#about" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">About Us</a>
+                </nav>
+
+                <!-- Actions Header -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <button onclick="openReportModal()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:text-brand-600 hover:border-brand-200 font-medium text-sm transition flex items-center gap-2 bg-slate-50">
+                        <i data-lucide="file-text" class="w-4 h-4 text-brand-600"></i> Download Report
+                    </button>
+                    <button onclick="openBookingWizard()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-teal-500 hover:from-brand-700 hover:to-teal-600 text-white font-medium text-sm shadow-md shadow-brand-500/20 transition flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-4 h-4"></i> Book Home Test
+                    </button>
+                    <!-- Cart Trigger -->
+                    <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+                        <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                        <span id="cart-badge" class="hidden absolute -top-1 -right-1 bg-rose-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-white">0</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Container -->
+        <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Home</a>
+            <a href="#packages" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Health Packages</a>
+            <a href="#tests" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Test Directory</a>
+            <a href="#portal" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Patient Portal</a>
+            <a href="#calculator" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">Health Calculator</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">About Us</a>
+            <div class="pt-4 flex flex-col gap-2">
+                <button onclick="toggleMobileMenu(); openReportModal()" class="w-full py-2.5 rounded-xl border border-slate-200 text-slate-700 font-medium text-center flex items-center justify-center gap-2">
+                    <i data-lucide="file-text" class="w-4 h-4 text-brand-600"></i> Download Report
+                </button>
+                <button onclick="toggleMobileMenu(); openBookingWizard()" class="w-full py-2.5 rounded-xl bg-brand-600 text-white font-medium text-center flex items-center justify-center gap-2">
+                    <i data-lucide="calendar" class="w-4 h-4"></i> Book Home Collection
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative overflow-hidden bg-gradient-to-b from-teal-50/50 via-white to-slate-50 py-16 lg:py-24">
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-10 w-80 h-80 bg-cyan-200/30 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-semibold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-brand-600 animate-ping"></span>
+                        Next-Gen Robotic Pathology Lab
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+                        Advanced Diagnostics with <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-cyan-600">Uncompromising Precision</span>
+                    </h1>
+
+                    <p class="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Experience 99.9% testing accuracy with NABL certified standards, AI-assisted analyzers, and seamless home sample collection delivered right to your doorstep.
+                    </p>
+
+                    <!-- Search Bar -->
+                    <div class="pt-2">
+                        <div class="bg-white p-2.5 rounded-2xl shadow-xl shadow-slate-200/80 border border-slate-100 flex flex-col sm:flex-row items-center gap-2 max-w-2xl">
+                            <div class="relative flex-1 w-full flex items-center">
+                                <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-3.5"></i>
+                                <input type="text" id="hero-search-input" placeholder="Search tests e.g. HbA1c, Vitamin D, Full Body..." class="w-full pl-11 pr-4 py-3 bg-transparent text-sm focus:outline-none text-slate-800 placeholder-slate-400 font-medium" onkeyup="handleHeroSearch(event)">
+                            </div>
+                            <button onclick="executeHeroSearch()" class="w-full sm:w-auto px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm rounded-xl transition flex items-center justify-center gap-2 shrink-0">
+                                <span>Find Test</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mt-3 text-xs text-slate-500">
+                            <span class="font-semibold text-slate-600">Popular:</span>
+                            <button onclick="quickSearch('Thyroid')" class="hover:text-brand-600 bg-slate-100 px-2.5 py-1 rounded-md transition">Thyroid Profile</button>
+                            <button onclick="quickSearch('CBC')" class="hover:text-brand-600 bg-slate-100 px-2.5 py-1 rounded-md transition">CBC Blood Test</button>
+                            <button onclick="quickSearch('Diabetes')" class="hover:text-brand-600 bg-slate-100 px-2.5 py-1 rounded-md transition">HbA1c Diabetes</button>
+                            <button onclick="quickSearch('Full Body')" class="hover:text-brand-600 bg-slate-100 px-2.5 py-1 rounded-md transition">Full Body Checkup</button>
+                        </div>
+                    </div>
+
+                    <!-- Trust Stats -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200/80">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-slate-900">50,000+</div>
+                            <div class="text-xs text-slate-500 font-medium mt-0.5">Happy Patients</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-slate-900">99.9%</div>
+                            <div class="text-xs text-slate-500 font-medium mt-0.5">Accuracy Rate</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-slate-900">60 Mins</div>
+                            <div class="text-xs text-slate-500 font-medium mt-0.5">Fast Home Collection</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Hero Visual Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="glass-card rounded-3xl p-6 shadow-2xl relative z-10 overflow-hidden border border-white">
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center font-bold text-sm">
+                                        DH
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-slate-900">Live Sample Tracker</h4>
+                                        <p class="text-xs text-slate-500">Real-time Pathology Status</p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live Status
+                                </span>
+                            </div>
+
+                            <div class="bg-slate-900 text-white rounded-2xl p-5 mb-4 shadow-lg">
+                                <div class="flex justify-between text-xs text-slate-400 mb-2">
+                                    <span>Sample ID: #DH-88402</span>
+                                    <span>Report Ready</span>
+                                </div>
+                                <div class="font-medium text-slate-200 text-sm mb-3">Comprehensive Wellness Profile</div>
+                                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-brand-500 to-teal-300 h-full w-full"></div>
+                                </div>
+                                <div class="mt-4 flex items-center justify-between text-xs">
+                                    <span class="text-emerald-400 font-semibold flex items-center gap-1"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Verified by Pathologist</span>
+                                    <button onclick="openReportModal('DH-88402')" class="text-brand-300 hover:text-white font-medium underline transition">Preview PDF</button>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <button onclick="openBookingWizard()" class="p-3 bg-brand-50 hover:bg-brand-100 rounded-xl border border-brand-100 text-left transition group">
+                                    <i data-lucide="home" class="w-5 h-5 text-brand-600 mb-1 group-hover:scale-110 transition"></i>
+                                    <div class="text-xs font-bold text-slate-800">Home Sample</div>
+                                    <div class="text-[10px] text-slate-500">Free Phlebotomist Visit</div>
+                                </button>
+                                <button onclick="scrollToSection('portal')" class="p-3 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-200/80 text-left transition group">
+                                    <i data-lucide="shield-check" class="w-5 h-5 text-cyan-600 mb-1 group-hover:scale-110 transition"></i>
+                                    <div class="text-xs font-bold text-slate-800">Verified Reports</div>
+                                    <div class="text-[10px] text-slate-500">Instant Online Access</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Packages Section -->
+    <section id="packages" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-brand-600 text-xs font-bold uppercase tracking-wider">Preventive Care</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Curated Health Checkup Packages</h2>
+                    <p class="text-slate-600 text-sm mt-2 max-w-xl">Comprehensive diagnostic panels tailored for all age groups with deep parameter analysis.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="packages-container">
+                <!-- Package cards injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Directory -->
+    <section id="tests" class="py-20 bg-slate-50 border-t border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-brand-600 text-xs font-bold uppercase tracking-wider">Test Catalog</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Search Individual Pathology Tests</h2>
+                <p class="text-slate-600 text-sm mt-2">Filter over 100+ clinical lab tests with transparent pricing and preparation guidelines.</p>
+            </div>
+
+            <!-- Search and Filter Bar -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 mb-8 space-y-4">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="relative flex-1">
+                        <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-3.5 top-3.5"></i>
+                        <input type="text" id="test-search-bar" placeholder="Search test name or code (e.g. CBC, Lipid, Thyroid)..." class="w-full pl-11 pr-4 py-3 bg-slate-50 rounded-xl text-sm border border-slate-200 focus:outline-none focus:border-brand-500 font-medium" oninput="filterTests()">
+                    </div>
+                    <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 hide-scrollbar" id="category-pills">
+                        <!-- Category Filter Pills injected via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Cards Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="tests-container">
+                <!-- Test cards injected dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Patient Portal & Online Reports -->
+    <section id="portal" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-brand-600 text-xs font-bold uppercase tracking-wider">Digital Patient Desk</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900">Access Your Lab Reports Anywhere, Anytime</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Enter your credentials to download digitally signed lab reports with historical health charts and smart reference ranges.
+                    </p>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
+                        <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-brand-600"></i> Quick Report Lookup
+                        </h4>
+                        
+                        <form onsubmit="handlePortalLookup(event)" class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Sample / Bill ID</label>
+                                <input type="text" id="portal-sample-id" placeholder="e.g. DH-88402" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500 font-medium">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Registered Mobile Number</label>
+                                <input type="tel" id="portal-mobile" placeholder="e.g. 9876543210" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500 font-medium">
+                            </div>
+                            <button type="submit" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm rounded-xl transition flex items-center justify-center gap-2">
+                                <i data-lucide="search" class="w-4 h-4"></i> Search & Download Report
+                            </button>
+                        </form>
+                        <div class="text-[11px] text-slate-500 text-center">
+                            Demo IDs available: <button type="button" onclick="fillDemo('DH-88402')" class="text-brand-600 underline font-semibold">DH-88402</button> or <button type="button" onclick="fillDemo('DH-90112')" class="text-brand-600 underline font-semibold">DH-90112</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patient Dashboard Interface Demo -->
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-900 text-slate-100 p-6 sm:p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+                            <div>
+                                <div class="text-xs text-slate-400">Interactive Patient Dashboard</div>
+                                <div class="text-lg font-bold text-white flex items-center gap-2">
+                                    <span>Welcome Back, Alex Morgan</span>
+                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+                                </div>
+                            </div>
+                            <span class="text-xs bg-slate-800 border border-slate-700 px-3 py-1 rounded-full text-brand-300 font-medium">Patient ID: P-44910</span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Recent Diagnostic Records</div>
+
+                            <div class="bg-slate-800/80 hover:bg-slate-800 rounded-2xl p-4 transition border border-slate-700/60 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center shrink-0">
+                                        <i data-lucide="droplet" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-semibold text-white">Full Body Advanced Profile</div>
+                                        <div class="text-xs text-slate-400">Sample Collected: Today, 08:30 AM</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between sm:justify-end gap-3">
+                                    <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-medium rounded-full border border-emerald-500/20">Ready</span>
+                                    <button onclick="openReportModal('DH-88402')" class="px-3 py-1.5 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-xs font-medium transition flex items-center gap-1">
+                                        <i data-lucide="eye" class="w-3.5 h-3.5"></i> View PDF
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-800/80 hover:bg-slate-800 rounded-2xl p-4 transition border border-slate-700/60 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
+                                        <i data-lucide="activity" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-semibold text-white">HbA1c & Fasting Glucose</div>
+                                        <div class="text-xs text-slate-400">Sample ID: DH-90112</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between sm:justify-end gap-3">
+                                    <span class="px-2.5 py-1 bg-amber-500/10 text-amber-400 text-xs font-medium rounded-full border border-amber-500/20">Processing</span>
+                                    <button onclick="alert('Sample is currently undergoing automated analysis. Estimated completion: 2 Hours.')" class="px-3 py-1.5 bg-slate-700 text-slate-300 rounded-lg text-xs font-medium hover:bg-slate-600 transition">Track</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Health Widget -->
+                        <div class="mt-6 pt-6 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
+                            <div class="bg-slate-800/40 p-3 rounded-xl border border-slate-800">
+                                <div class="text-[11px] text-slate-400">Blood Sugar (F)</div>
+                                <div class="text-sm font-bold text-emerald-400 mt-1">94 mg/dL <span class="text-[10px] text-slate-400">(Normal)</span></div>
+                            </div>
+                            <div class="bg-slate-800/40 p-3 rounded-xl border border-slate-800">
+                                <div class="text-[11px] text-slate-400">Vitamin D3</div>
+                                <div class="text-sm font-bold text-amber-400 mt-1">24.2 ng/mL <span class="text-[10px] text-slate-400">(Deficient)</span></div>
+                            </div>
+                            <div class="bg-slate-800/40 p-3 rounded-xl border border-slate-800 col-span-2 sm:col-span-1">
+                                <div class="text-[11px] text-slate-400">Total Cholesterol</div>
+                                <div class="text-sm font-bold text-emerald-400 mt-1">178 mg/dL <span class="text-[10px] text-slate-400">(Optimal)</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Risk Assessment Calculator -->
+    <section id="calculator" class="py-20 bg-gradient-to-b from-slate-50 to-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="text-brand-600 text-xs font-bold uppercase tracking-wider">Health Assessment Tool</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Smart BMI & Health Risk Check</h2>
+                <p class="text-slate-600 text-sm mt-2">Get personalized diagnostic recommendations based on your Body Mass Index and age profile.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100 grid md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-6 space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Height (cm)</label>
+                        <input type="number" id="calc-height" value="172" placeholder="170" class="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500 font-semibold" oninput="calculateBMI()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Weight (kg)</label>
+                        <input type="number" id="calc-weight" value="70" placeholder="68" class="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500 font-semibold" oninput="calculateBMI()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Age Group</label>
+                        <select id="calc-age" class="w-full p-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500 font-semibold" onchange="calculateBMI()">
+                            <option value="adult">Adult (18-50 years)</option>
+                            <option value="senior">Senior (50+ years)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Calculator Output -->
+                <div class="md:col-span-6 bg-slate-900 text-white p-6 rounded-2xl flex flex-col justify-between h-full">
+                    <div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Assessment Score</div>
+                        <div class="flex items-baseline gap-3 mt-2">
+                            <span class="text-5xl font-black text-teal-400" id="bmi-score">23.7</span>
+                            <span class="text-sm font-semibold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300" id="bmi-badge">Normal Weight</span>
+                        </div>
+                        <p class="text-xs text-slate-300 mt-4 leading-relaxed" id="bmi-description">
+                            Your BMI indicates a healthy body weight. Maintain your healthy lifestyle with periodic preventive screenings.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-800">
+                        <div class="text-xs font-bold text-slate-400 mb-2">Recommended Diagnostics:</div>
+                        <div id="bmi-recommendation" class="text-xs font-semibold text-brand-300 flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Annual Comprehensive Wellness Profile
+                        </div>
+                        <button onclick="scrollToSection('packages')" class="mt-4 w-full py-2.5 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-bold transition">
+                            Explore Packages for Your Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Quality Features -->
+    <section id="about" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-brand-400 text-xs font-bold uppercase tracking-wider">Unmatched Quality</span>
+                <h2 class="text-3xl font-extrabold mt-1">Why Choose Divine Health Diagnostic</h2>
+                <p class="text-slate-400 text-sm mt-2">Combining fully automated robotic tracks with senior MD Pathologist reviews.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700/60 hover:border-brand-500/50 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center mb-4">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Robotic Automation</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Zero sample swapping risk with automated barcode tracking and integrated Roche & Beckman Coulter clinical analyzers.</p>
+                </div>
+
+                <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700/60 hover:border-brand-500/50 transition">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-4">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">NABL & ISO Accredited</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Adhering strictly to national and international quality guidelines with rigorous daily internal and external EQAS quality checks.</p>
+                </div>
+
+                <div class="bg-slate-800/60 p-6 rounded-2xl border border-slate-700/60 hover:border-brand-500/50 transition">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4">
+                        <i data-lucide="user-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Expert Pathologists</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Every critical report undergoes dual verification by certified MD Pathologists and biochemists prior to release.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold">
+                            <i data-lucide="activity" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-lg font-extrabold text-white">DIVINE HEALTH</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Divine Health Diagnostic is a state-of-the-art clinical pathology hub dedicated to high-precision medical testing.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">Quick Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#packages" class="hover:text-white transition">Health Checkup Packages</a></li>
+                        <li><a href="#tests" class="hover:text-white transition">Individual Lab Tests</a></li>
+                        <li><a href="#portal" class="hover:text-white transition">Patient Download Portal</a></li>
+                        <li><a href="#calculator" class="hover:text-white transition">Health Risk Calculator</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">Popular Tests</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#tests" onclick="quickSearch('Thyroid')" class="hover:text-white transition">Thyroid Profile Total</a></li>
+                        <li><a href="#tests" onclick="quickSearch('Vitamin')" class="hover:text-white transition">Vitamin D3 & B12 Test</a></li>
+                        <li><a href="#tests" onclick="quickSearch('Lipid')" class="hover:text-white transition">Lipid Profile Cardiac</a></li>
+                        <li><a href="#tests" onclick="quickSearch('CBC')" class="hover:text-white transition">Complete Blood Count (CBC)</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">Reach Us</h4>
+                    <div class="space-y-2 text-xs">
+                        <p class="flex items-start gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-brand-500 shrink-0 mt-0.5"></i> 102 Healthcare Avenue, Medical District</p>
+                        <p class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-brand-500 shrink-0"></i> +1 (800) 123-456</p>
+                        <p class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-brand-500 shrink-0"></i> care@divinehealth.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 text-xs flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div>&copy; 2026 Divine Health Diagnostic Lab. All rights reserved.</div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                    <a href="#" class="hover:text-white">NABL Accreditation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Wizard Modal -->
+    <div id="booking-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeBookingWizard()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-brand-600 text-xs font-bold uppercase tracking-wider">Home Sample Service</span>
+                <h3 class="text-xl font-bold text-slate-900">Schedule Sample Collection</h3>
+            </div>
+
+            <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Full Name</label>
+                    <input type="text" required placeholder="John Doe" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Mobile Number</label>
+                        <input type="tel" required placeholder="9876543210" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Age & Gender</label>
+                        <input type="text" required placeholder="32, Male" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Preferred Date</label>
+                        <input type="date" required id="booking-date" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Time Slot</label>
+                        <select class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500">
+                            <option>06:00 AM - 08:00 AM</option>
+                            <option>08:00 AM - 10:00 AM</option>
+                            <option>10:00 AM - 12:00 PM</option>
+                            <option>04:00 PM - 06:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Complete Address</label>
+                    <textarea required rows="2" placeholder="House no, Street name, Landmark, Pincode" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-500"></textarea>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs space-y-1">
+                    <div class="flex justify-between text-slate-600">
+                        <span>Sample Collection Fee:</span>
+                        <span class="text-emerald-600 font-bold">FREE</span>
+                    </div>
+                    <div class="flex justify-between font-bold text-slate-800 text-sm pt-1 border-t border-slate-200">
+                        <span>Items Selected:</span>
+                        <span id="booking-modal-cart-count">0 Test(s)</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm rounded-xl transition shadow-md shadow-brand-500/20">
+                    Confirm Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Pathology Report Modal -->
+    <div id="report-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeReportModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Report Header -->
+            <div class="border-b-2 border-slate-900 pb-4 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-brand-600 text-white rounded-xl flex items-center justify-center font-bold">DH</div>
+                    <div>
+                        <h2 class="font-extrabold text-slate-900 text-lg">DIVINE HEALTH DIAGNOSTIC</h2>
+                        <p class="text-[11px] text-slate-500">NABL Accredited Reference Laboratory</p>
+                    </div>
+                </div>
+                <div class="text-right text-xs">
+                    <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 font-bold rounded-md">VERIFIED REPORT</span>
+                    <div class="text-slate-500 text-[10px] mt-1">Report ID: <span id="report-modal-id">DH-88402</span></div>
+                </div>
+            </div>
+
+            <!-- Patient Metadata -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs mb-6">
+                <div>
+                    <span class="text-slate-400 block">Patient Name</span>
+                    <span class="font-bold text-slate-800">Alex Morgan</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block">Age / Gender</span>
+                    <span class="font-bold text-slate-800">34 Yrs / Male</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block">Referred By</span>
+                    <span class="font-bold text-slate-800">Dr. R. K. Sharma</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block">Sample Collected</span>
+                    <span class="font-bold text-slate-800">Today, 08:30 AM</span>
+                </div>
+            </div>
+
+            <!-- Parameters Table -->
+            <div class="overflow-x-auto mb-6">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-slate-100 border-b border-slate-200 text-slate-700">
+                            <th class="p-2.5 font-bold">TEST PARAMETER</th>
+                            <th class="p-2.5 font-bold">RESULT</th>
+                            <th class="p-2.5 font-bold">UNIT</th>
+                            <th class="p-2.5 font-bold">REFERENCE RANGE</th>
+                            <th class="p-2.5 font-bold">STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-800" id="report-parameters-body">
+                        <!-- Dynamic Report Parameters injected -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+                <div class="text-slate-500">
+                    *** End of Diagnostic Report ***<br>
+                    Authenticated by Senior Pathologists.
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="window.print()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition flex items-center gap-1.5">
+                        <i data-lucide="printer" class="w-4 h-4"></i> Print
+                    </button>
+                    <button onclick="downloadPDFSim()" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl transition flex items-center gap-1.5">
+                        <i data-lucide="download" class="w-4 h-4"></i> Download PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Cart Drawer -->
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <div class="p-5 border-b border-slate-200 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-600"></i>
+                <h3 class="font-bold text-slate-900 text-base">Selected Tests & Packages</h3>
+            </div>
+            <button onclick="toggleCartDrawer()" class="p-1 rounded-lg hover:bg-slate-100 text-slate-500">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div class="p-5 flex-1 overflow-y-auto space-y-3" id="cart-items-container">
+            <!-- Items injected via JS -->
+        </div>
+
+        <div class="p-5 border-t border-slate-200 bg-slate-50 space-y-3">
+            <div class="flex justify-between text-sm">
+                <span class="text-slate-600">Subtotal:</span>
+                <span class="font-bold text-slate-900" id="cart-subtotal">$0</span>
+            </div>
+            <div class="flex justify-between text-xs text-emerald-600">
+                <span>Home Sample Collection:</span>
+                <span class="font-bold">FREE</span>
+            </div>
+            <div class="pt-2 border-t border-slate-200 flex justify-between text-base font-bold text-slate-900">
+                <span>Total Amount:</span>
+                <span class="text-brand-600" id="cart-total">$0</span>
+            </div>
+            <button onclick="toggleCartDrawer(); openBookingWizard()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm rounded-xl transition shadow-md shadow-brand-500/20 flex items-center justify-center gap-2">
+                <span>Proceed to Book Collection</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 text-xs font-semibold">
+        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+        <span id="toast-message">Item added to booking cart</span>
+    </div>
+
+    <script>
+        // Diagnostic Catalog Data
+        const packagesData = [
+            {
+                id: 'pkg-1',
+                title: 'Full Body Vital Screening',
+                badge: 'Most Popular',
+                parameters: '84 Parameters Included',
+                price: 129,
+                originalPrice: 240,
+                discount: '46% OFF',
+                testsList: ['Complete Blood Count (CBC)', 'Lipid Profile Full', 'Thyroid Panel (T3, T4, TSH)', 'Kidney Function Test', 'Liver Function Test', 'Vitamin D3 & B12', 'HbA1c Diabetes'],
+                fasting: '10-12 Hrs Fasting Required'
+            },
+            {
+                id: 'pkg-2',
+                title: 'Executive Cardiac Profile',
+                badge: 'Heart Health',
+                parameters: '42 Parameters Included',
+                price: 99,
+                originalPrice: 180,
+                discount: '45% OFF',
+                testsList: ['High Sensitivity CRP (hs-CRP)', 'Lipid Profile Complete', 'Apolipoprotein A1 & B', 'Homocysteine Level', 'HbA1c Blood Glucose'],
+                fasting: '12 Hrs Fasting Required'
+            },
+            {
+                id: 'pkg-3',
+                title: 'Comprehensive Diabetic Care',
+                badge: 'Specialized Panel',
+                parameters: '28 Parameters Included',
+                price: 65,
+                originalPrice: 110,
+                discount: '40% OFF',
+                testsList: ['HbA1c Glycated Hemoglobin', 'Fasting Blood Glucose', 'Postprandial Blood Sugar', 'Microalbumin Urine', 'Lipid Profile Basic'],
+                fasting: 'Fasting + 2hr Post Meal'
+            },
+            {
+                id: 'pkg-4',
+                title: 'Senior Citizen Health Package',
+                badge: 'Age 50+ Care',
+                parameters: '76 Parameters Included',
+                price: 115,
+                originalPrice: 210,
+                discount: '45% OFF',
+                testsList: ['Bone Mineral Health Panel', 'Complete Blood Profile', 'Rheumatoid Factor (RA)', 'Thyroid Function Test', 'Renal & Liver Function'],
+                fasting: '10-12 Hrs Fasting Required'
+            }
+        ];
+
+        const testsCatalog = [
+            { id: 't-1', code: 'CBC-01', name: 'Complete Blood Count (CBC)', category: 'Blood', price: 25, tat: '6 Hours', fasting: 'Not Required' },
+            { id: 't-2', code: 'THY-02', name: 'Thyroid Profile Total (T3, T4, TSH)', category: 'Hormones', price: 35, tat: '8 Hours', fasting: 'Not Required' },
+            { id: 't-3', code: 'DIA-03', name: 'HbA1c (Glycated Hemoglobin)', category: 'Diabetes', price: 30, tat: '4 Hours', fasting: 'Not Required' },
+            { id: 't-4', code: 'LIP-04', name: 'Lipid Profile Comprehensive', category: 'Heart', price: 45, tat: '8 Hours', fasting: '10-12 Hrs Fasting' },
+            { id: 't-5', code: 'VIT-05', name: 'Vitamin D3 (25-Hydroxy)', category: 'Vitamins', price: 40, tat: '12 Hours', fasting: 'Not Required' },
+            { id: 't-6', code: 'VIT-06', name: 'Vitamin B12 Serum', category: 'Vitamins', price: 35, tat: '12 Hours', fasting: 'Fasting Preferred' },
+            { id: 't-7', code: 'KFT-07', name: 'Kidney Function Test (KFT)', category: 'Organ Check', price: 42, tat: '8 Hours', fasting: 'Fasting Preferred' },
+            { id: 't-8', code: 'LFT-08', name: 'Liver Function Test (LFT)', category: 'Organ Check', price: 42, tat: '8 Hours', fasting: '10 Hrs Fasting' },
+            { id: 't-9', code: 'UR-09', name: 'Routine Urine Examination', category: 'Urine', price: 18, tat: '4 Hours', fasting: 'First Sample' }
+        ];
+
+        let cart = [];
+        let selectedCategory = 'All';
+
+        // Initialize App on load
+        window.onload = function() {
+            lucide.createIcons();
+            renderPackages();
+            renderCategories();
+            renderTests();
+            calculateBMI();
+
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('booking-date').value = today;
+            document.getElementById('booking-date').min = today;
+        };
+
+        // Render Packages Cards
+        function renderPackages() {
+            const container = document.getElementById('packages-container');
+            container.innerHTML = packagesData.map(pkg => `
+                <div class="glass-card rounded-3xl p-6 flex flex-col justify-between hover:shadow-xl hover:border-brand-300 transition group border border-slate-200">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 bg-brand-100 text-brand-800 text-[10px] font-bold rounded-full uppercase tracking-wider">${pkg.badge}</span>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">${pkg.discount}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition">${pkg.title}</h3>
+                        <p class="text-xs text-brand-600 font-semibold mt-1">${pkg.parameters}</p>
+                        
+                        <div class="my-4 pt-3 border-t border-slate-100 space-y-2">
+                            ${pkg.testsList.map(t => `<div class="text-xs text-slate-600 flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-500 shrink-0"></i> <span>${t}</span></div>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100">
+                        <div class="flex items-baseline gap-2 mb-3">
+                            <span class="text-2xl font-black text-slate-900">$${pkg.price}</span>
+                            <span class="text-xs text-slate-400 line-through">$${pkg.originalPrice}</span>
+                        </div>
+                        <button onclick="addToCart('${pkg.id}', 'package')" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-2">
+                            <i data-lucide="plus" class="w-4 h-4"></i> Add To Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        // Render Filter Categories
+        function renderCategories() {
+            const categories = ['All', 'Blood', 'Hormones', 'Diabetes', 'Heart', 'Vitamins', 'Organ Check'];
+            const container = document.getElementById('category-pills');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="filterCategory('${cat}')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${selectedCategory === cat ? 'bg-brand-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function filterCategory(cat) {
+            selectedCategory = cat;
+            renderCategories();
+            renderTests();
+        }
+
+        // Render Tests Catalog
+        function renderTests() {
+            const searchQuery = document.getElementById('test-search-bar').value.toLowerCase();
+            const container = document.getElementById('tests-container');
+
+            const filtered = testsCatalog.filter(t => {
+                const matchesCat = selectedCategory === 'All' || t.category === selectedCategory;
+                const matchesSearch = t.name.toLowerCase().includes(searchQuery) || t.code.toLowerCase().includes(searchQuery);
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 text-sm">No tests found matching your search.</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(t => `
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between text-[11px] text-slate-400 font-semibold mb-2">
+                            <span>CODE: ${t.code}</span>
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-600 rounded">${t.category}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-sm">${t.name}</h4>
+                        
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-500">
+                            <div class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-brand-600"></i> Turnaround Time: ${t.tat}</div>
+                            <div class="flex items-center gap-1.5"><i data-lucide="alert-circle" class="w-3.5 h-3.5 text-amber-500"></i> ${t.fasting}</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-lg font-black text-slate-900">$${t.price}</span>
+                        <button onclick="addToCart('${t.id}', 'test')" class="px-3.5 py-1.5 bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 font-bold text-xs rounded-xl transition flex items-center gap-1">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function filterTests() {
+            renderTests();
+        }
+
+        function handleHeroSearch(e) {
+            if (e.key === 'Enter') {
+                executeHeroSearch();
+            }
+        }
+
+        function executeHeroSearch() {
+            const query = document.getElementById('hero-search-input').value;
+            if (!query) return;
+            scrollToSection('tests');
+            document.getElementById('test-search-bar').value = query;
+            renderTests();
+        }
+
+        function quickSearch(term) {
+            scrollToSection('tests');
+            document.getElementById('test-search-bar').value = term;
+            renderTests();
+        }
+
+        // Shopping Cart Management
+        function addToCart(itemId, type) {
+            let item;
+            if (type === 'package') {
+                item = packagesData.find(p => p.id === itemId);
+            } else {
+                item = testsCatalog.find(t => t.id === itemId);
+            }
+
+            if (item) {
+                cart.push({ ...item, itemType: type });
+                updateCartUI();
+                showToast(`Added "${item.title || item.name}" to booking cart.`);
+            }
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const cartContainer = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+            const modalCount = document.getElementById('booking-modal-cart-count');
+
+            badge.innerText = cart.length;
+            if (cart.length > 0) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            modalCount.innerText = `${cart.length} Test(s)`;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `<div class="text-center py-12 text-slate-400 text-xs">Your booking cart is empty. Select tests or health packages to continue.</div>`;
+                subtotalEl.innerText = '$0';
+                totalEl.innerText = '$0';
+                return;
+            }
+
+            let total = 0;
+            cartContainer.innerHTML = cart.map((item, idx) => {
+                total += item.price;
+                return `
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80 flex items-center justify-between">
+                        <div>
+                            <div class="font-bold text-xs text-slate-800">${item.title || item.name}</div>
+                            <div class="text-[10px] text-slate-400">${item.itemType === 'package' ? 'Health Package' : 'Individual Test'}</div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="font-bold text-xs text-slate-900">$${item.price}</span>
+                            <button onclick="removeFromCart(${idx})" class="text-slate-400 hover:text-rose-500">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            subtotalEl.innerText = `$${total}`;
+            totalEl.innerText = `$${total}`;
+            lucide.createIcons();
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        // Modal Handlers
+        function openBookingWizard() {
+            document.getElementById('booking-modal').classList.remove('hidden');
+        }
+
+        function closeBookingWizard() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            closeBookingWizard();
+            cart = [];
+            updateCartUI();
+            alert('Booking Request Received! Our phlebotomist will contact you shortly to confirm sample pickup time.');
+        }
+
+        function openReportModal(sampleId = 'DH-88402') {
+            document.getElementById('report-modal-id').innerText = sampleId;
+            const tbody = document.getElementById('report-parameters-body');
+
+            const demoData = [
+                { test: 'Hemoglobin (Hb)', result: '14.8', unit: 'g/dL', range: '13.0 - 17.0', status: 'Normal' },
+                { test: 'Total Leukocyte Count (TLC)', result: '7,200', unit: '/cumm', range: '4,000 - 11,000', status: 'Normal' },
+                { test: 'Fasting Blood Sugar (Glucose)', result: '94', unit: 'mg/dL', range: '70 - 100', status: 'Normal' },
+                { test: 'HbA1c (Glycated Hb)', result: '5.4', unit: '%', range: '4.0 - 5.6', status: 'Normal' },
+                { test: 'Serum Vitamin D3', result: '24.2', unit: 'ng/mL', range: '30.0 - 100.0', status: 'Low' },
+                { test: 'Total Cholesterol', result: '178', unit: 'mg/dL', range: '< 200', status: 'Optimal' }
+            ];
+
+            tbody.innerHTML = demoData.map(d => `
+                <tr>
+                    <td class="p-2.5 font-semibold text-slate-800">${d.test}</td>
+                    <td class="p-2.5 font-bold ${d.status === 'Low' ? 'text-amber-600' : 'text-slate-900'}">${d.result}</td>
+                    <td class="p-2.5 text-slate-500">${d.unit}</td>
+                    <td class="p-2.5 text-slate-500">${d.range}</td>
+                    <td class="p-2.5"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${d.status === 'Low' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${d.status}</span></td>
+                </tr>
+            `).join('');
+
+            document.getElementById('report-modal').classList.remove('hidden');
+        }
+
+        function closeReportModal() {
+            document.getElementById('report-modal').classList.add('hidden');
+        }
+
+        function handlePortalLookup(e) {
+            e.preventDefault();
+            const sid = document.getElementById('portal-sample-id').value;
+            openReportModal(sid);
+        }
+
+        function fillDemo(id) {
+            document.getElementById('portal-sample-id').value = id;
+            document.getElementById('portal-mobile').value = '9876543210';
+        }
+
+        function downloadPDFSim() {
+            alert('Downloading Verified PDF Pathology Report...');
+        }
+
+        // Interactive BMI Calculator Logic
+        function calculateBMI() {
+            const heightCm = parseFloat(document.getElementById('calc-height').value) || 170;
+            const weightKg = parseFloat(document.getElementById('calc-weight').value) || 70;
+
+            const heightM = heightCm / 100;
+            const bmi = (weightKg / (heightM * heightM)).toFixed(1);
+
+            document.getElementById('bmi-score').innerText = bmi;
+
+            const badge = document.getElementById('bmi-badge');
+            const desc = document.getElementById('bmi-description');
+            const reco = document.getElementById('bmi-recommendation');
+
+            if (bmi < 18.5) {
+                badge.innerText = 'Underweight';
+                badge.className = 'text-sm font-semibold px-3 py-1 rounded-full bg-amber-500/20 text-amber-300';
+                desc.innerText = 'Your BMI indicates underweight status. We recommend checking nutritional markers and vitamin levels.';
+                reco.innerText = 'Recommended: Vitamin Profile & Complete Blood Count';
+            } else if (bmi >= 18.5 && bmi < 25) {
+                badge.innerText = 'Normal Weight';
+                badge.className = 'text-sm font-semibold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300';
+                desc.innerText = 'Your BMI is in a healthy range. Maintain your healthy lifestyle with standard yearly health screenings.';
+                reco.innerText = 'Recommended: Annual Full Body Screening Profile';
+            } else if (bmi >= 25 && bmi < 30) {
+                badge.innerText = 'Overweight';
+                badge.className = 'text-sm font-semibold px-3 py-1 rounded-full bg-amber-500/20 text-amber-300';
+                desc.innerText = 'Slightly above recommended weight range. Checking lipid profiles and blood sugar levels is advised.';
+                reco.innerText = 'Recommended: Cardiac & Diabetes Screening Package';
+            } else {
+                badge.innerText = 'Obese';
+                badge.className = 'text-sm font-semibold px-3 py-1 rounded-full bg-rose-500/20 text-rose-300';
+                desc.innerText = 'Higher risk profile for metabolic conditions. Comprehensive diagnostic evaluation recommended.';
+                reco.innerText = 'Recommended: Comprehensive Cardiac & Metabolic Panel';
+            }
+        }
+
+        // Helper Utilities
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
